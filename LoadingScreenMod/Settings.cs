@@ -137,7 +137,9 @@ namespace LoadingScreenMod
             TextField(group, reportDir, OnReportDirChanged);
 
             group = CreateGroup(helper, "Prefab skipping");
-            Check(group, "Skip the prefabs named in this file:", "Prefab means the built-in assets in the game", skipPrefabs, b => { skipPrefabs = b; Save(); });
+            bool noSkip = Environment.GetCommandLineArgs().Any(_arg => _arg == "-noSkip");
+            if(!noSkip)
+                Check(group, "Skip the prefabs named in this file:", "Prefab means the built-in assets in the game", skipPrefabs, b => { skipPrefabs = b; Save(); });
             TextField(group, skipFile, OnSkipFileChanged);
         }
 
