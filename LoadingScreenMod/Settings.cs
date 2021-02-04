@@ -85,6 +85,9 @@ namespace LoadingScreenMod
 
         internal DateTime LoadSkipFile()
         {
+            bool noSkip = Environment.GetCommandLineArgs().Any(_arg => _arg == "-noSkip");
+            if (noAssets) 
+                return DateTime.MinValue;
             try
             {
                 if (skipPrefabs)
